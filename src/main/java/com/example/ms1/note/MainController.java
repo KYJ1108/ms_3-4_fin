@@ -20,7 +20,6 @@ public class MainController {
 
     @RequestMapping("/")
     public String main(Model model, ParamHandler paramHandler) {
-
         MainDataDto mainDataDto = mainService.getDefaultMainData(paramHandler.getKeyword());
         model.addAttribute("mainDataDto", mainDataDto);
         return "main";

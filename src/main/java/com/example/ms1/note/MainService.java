@@ -22,7 +22,6 @@ public class MainService {
     private final TagService tagService;
 
     public MainDataDto getDefaultMainData(String keyword) {
-//        List<Notebook> notebookList = notebookService.getNotebookList(); // 전체 노트북 리스트
         List<Notebook> notebookList = notebookService.getTopNotebookList();
 
         if (notebookList.isEmpty()) {
@@ -63,14 +62,6 @@ public class MainService {
         mainDataDto.setNoteList(sortedNoteList);
 
         return mainDataDto;
-    }
-
-    public Notebook getNotebook(Long notebookId) {
-        return notebookService.getNotebook(notebookId);
-    }
-
-    public List<Notebook> getNotebookList() {
-        return notebookService.getNotebookList();
     }
 
     public Notebook saveDefaultNotebook() {
@@ -116,23 +107,25 @@ public class MainService {
         // 먼저 자식 노트북 삭제
         List<Notebook> children = notebook.getChildren();
         for (Notebook child : children) {
-            // 자식 노트북의 노트 먼저 삭제
             deleteBasic(child);
         }
-        // 본인 삭제
-        // 노트 먼저 삭제
-        // 본인 노트북 삭제
         deleteBasic(notebook);
     }
 
     public void deleteBasic(Notebook notebook) {
 
         List<Note> noteList = notebook.getNoteList();
-        // 노트 먼저 삭제
         for (Note note : noteList) {
             noteService.delete(note.getId());
         }
-        // 노트북 삭제
         notebookService.delete(notebook.getId());
+    }
+
+    public Notebook getNotebook(Long notebookId) {
+        return notebookService.getNotebook(notebookId);
+    }
+
+    public List<Notebook> getNotebookList() {
+        return notebookService.getNotebookList();
     }
 }

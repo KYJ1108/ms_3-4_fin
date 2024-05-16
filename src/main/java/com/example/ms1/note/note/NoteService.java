@@ -18,25 +18,15 @@ public class NoteService {
         note.setTitle("new title..");
         note.setContent("");
         note.setCreateDate(LocalDateTime.now());
-
         return noteRepository.save(note);
     }
 
     public Note getNote(Long id) {
-
         return noteRepository.findById(id).orElseThrow();
     }
 
     public List<Note> getNoteListByNotebook(Notebook targetNotebook) {
         return noteRepository.findByNotebook(targetNotebook);
-    }
-
-    public void save(Note note) {
-        noteRepository.save(note);
-    }
-
-    public void delete(Long id) {
-        noteRepository.deleteById(id);
     }
 
     public List<Note> getSearchedNoteList(String keyword) {
@@ -49,5 +39,13 @@ public class NoteService {
 
     public List<Note> getSortedListByTitle(Notebook targetNotebook) {
         return noteRepository.findByNotebookOrderByTitle(targetNotebook);
+    }
+
+    public void save(Note note) {
+        noteRepository.save(note);
+    }
+
+    public void delete(Long id) {
+        noteRepository.deleteById(id);
     }
 }

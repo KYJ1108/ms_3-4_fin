@@ -24,6 +24,10 @@ public class NotebookService {
         return notebookRepository.save(notebook);
     }
 
+    public List<Notebook> getTopNotebookList() {
+        return notebookRepository.findByParentIsNull();
+    }
+
     public void delete(Long id) {
         notebookRepository.deleteById(id);
     }
@@ -32,10 +36,6 @@ public class NotebookService {
         Notebook notebook = getNotebook(id);
         notebook.setName(name);
         return notebookRepository.save(notebook);
-    }
-
-    public List<Notebook> getTopNotebookList() {
-        return notebookRepository.findByParentIsNull();
     }
 
     public void move(Long id, Long destinationId) {

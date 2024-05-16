@@ -7,8 +7,7 @@
         targetNote=${mainDataDto.targetNote},
         searchedNotebookList=${mainDataDto.searchedNotebookList},
         searchedNoteList=${mainDataDto.searchedNoteList},
-        tagList = ${mainDataDto.tagList}
-">
+        tagList = ${mainDataDto.tagList}">
 
     <dialog th:replace="~{fragments/modal::moveModal}"/>
     <dialog th:replace="~{fragments/modal::searchModal}"/>
@@ -173,8 +172,6 @@
 
         }
 
-
-        // Post 요청이 발생하면 id=params에 있는 값을 가져와서 form에 추가해서 보낸다.
         function postAction(button, callback = null) {
             const form = button.form;
             const params = getDefaultParam();
@@ -203,9 +200,6 @@
             form.submit();
         }
 
-        // form을 싹 다 가져올 것임.
-
-
         function getAction(link, callback = null) {
             const url = link.dataset.url;
             const params = getDefaultParam();
@@ -216,8 +210,6 @@
             const queryString = new URLSearchParams(params).toString();
             location.href = url + '?' + queryString;
         }
-
-
 
         function getDefaultParam() {
             const paramInputList = document.querySelectorAll("#params input");

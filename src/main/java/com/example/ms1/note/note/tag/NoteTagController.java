@@ -25,7 +25,6 @@ public class NoteTagController {
         NoteTag noteTag = noteTagService.getNoteTag(noteTagId);
         Long notebookId = noteTag.getNote().getNotebook().getId();
         noteTagService.delete(noteTagId);
-
         return paramHandler.getRedirectUrl("/books/%d/notes/%d".formatted(notebookId, noteId));
     }
 }

@@ -26,7 +26,6 @@ public class NoteController {
 
     @PostMapping("/write")
     public String write(@PathVariable("notebookId") Long notebookId, ParamHandler paramHandler) {
-
         mainService.addToNotebook(notebookId);
         return paramHandler.getRedirectUrl("/");
     }
@@ -50,14 +49,13 @@ public class NoteController {
 
         note.setTitle(title);
         note.setContent(content);
-
         noteService.save(note);
+
         return paramHandler.getRedirectUrl("/books/%d/notes/%d".formatted(notebookId, id));
     }
 
     @PostMapping("/{id}/delete")
     public String delete(@PathVariable("notebookId") Long notebookId, @PathVariable("id") Long id, ParamHandler paramHandler) {
-
         noteService.delete(id);
         return paramHandler.getRedirectUrl("/");
     }
